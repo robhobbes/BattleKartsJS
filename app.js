@@ -1,5 +1,5 @@
 var app = require('http').createServer(handler),
-    io = require('socket.io').listen(app, {log: true}),
+    io = require('socket.io').listen(app, {log: false}),
     fs = require('fs'),
     port = process.env.PORT || 3000;
 
@@ -39,7 +39,6 @@ io.sockets.on('connection', function (socket) {
   });
 
   socket.on('connect', function (data) {
-    socket.emit('connectComplete');
     if (data === 'test') {
       testSocket = socket;
     } else if (data === 'game') {
@@ -57,6 +56,28 @@ io.sockets.on('connection', function (socket) {
     if (testSocket) {
       testSocket.emit('turnAmount', turnAmount);
     }
+  });
+
+  socket.on('gasOn', function (playerId) {
+  });
+
+  socket.on('gasOff', function (playerId) {
+  });
+
+  socket.on('itemOn', function (playerId) {
+  });
+
+  socket.on('itemOff', function (playerId) {
+  });
+
+  socket.on('brakeOn', function (playerId) {
+  });
+
+  socket.on('brakeOff', function (playerId) {
+  });
+
+  socket.on('debug', function (message) {
+    console.log(message);
   });
 });
 
